@@ -1,0 +1,369 @@
+# Loading libraries
+library('tidyverse')
+library('ggstance')
+library('lvplot')
+
+ggplot(faithful) +
+  geom_histogram(aes(eruptions),
+                 binwidth = 0.25)
+
+ggplot(diamonds) +
+  geom_histogram(aes(x=y), binwidth = 0.5) +
+  coord_cartesian(ylim=c(0,50))
+
+colnames(diamonds)
+str(diamonds)
+
+View(diamonds %>% filter(y < 3 | y > 20) %>%
+       arrange(y))
+
+ggplot(diamonds)+
+  geom_histogram(aes(x), binwidth = 0.5) +
+  coord_cartesian(ylim = c(0,100))#distribution of x
+
+ggplot(diamonds)+
+  geom_histogram(aes(y), binwidth = 0.5) +
+  coord_cartesian(xlim = c(0,20),
+                  ylim = c(0,40))#distribution of y
+
+ggplot(diamonds) +
+  geom_histogram(aes(z), binwidth = 0.5)+
+  coord_cartesian(ylim = c(0,30))#distribution of z
+
+ggplot(diamonds)+
+  geom_histogram(aes(x = price), binwidth = 100)
+
+# Exercise
+
+ggplot(filter(diamonds, price>=300, price<=2000)) +
+  geom_histogram(aes(x = price), binwidth = 20)
+
+'How many diamonds are 0.9 carat and how many are 1'
+diamonds %>% filter(carat >= 0.99, carat <= 1) %>%
+  group_by(carat) %>%
+  summarize(count = length(carat))
+
+
+max(diamonds$price)
+min(diamonds$price)
+
+
+## Covariation
+ggplot(diamonds)+
+  geom_freqpoly(aes(x = price, color = cut), binwidth = 500)
+
+ggplot(diamonds, aes(x = cut)) +
+  geom_bar()
+
+ggplot(diamonds,
+       aes(x = price, y = ..density..))+
+  geom_freqpoly(aes(color = cut), binwidth = 500)
+
+# Using the boxlpot
+ggplot(diamonds) +
+  geom_boxplot(aes(x = cut, y = price))
+
+#reordering values
+ggplot(mpg) +
+  geom_boxplot(aes(x = class, y =hwy))
+
+ggplot(mpg)+
+  geom_boxplot(aes(x = reorder(class, hwy, FUN = median),
+                   y = hwy))
+
+ggplot(mpg)+
+  geom_boxplot(aes(x = reorder(class, hwy, FUN = median),
+                   y = hwy)) +
+  coord_flip()
+
+flights <- flights %>%
+  mutate(
+    cancelled = is.na(dep_time),
+    sched_hour = sched_dep_time %/% 100,
+    sched_min = sched_dep_time %% 100,
+    sched_dep_time = sched_hour + sched_min / 60
+  )
+
+colnames(flights)
+View(flights)
+
+# Exercise
+ggplot(flights) +
+  geom_boxplot(aes(x=cancelled, y = sched_dep_time, col = as.factor(month))
+  )
+
+colnames(diamonds)
+
+
+# cut and price
+ggplot(diamonds) +
+  geom_boxplot(aes(x = cut, y = price))
+
+# carat and price
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price)) +
+  geom_smooth(aes(x = carat, y = price))
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+
+ggplot(diamonds) +
+  geom_boxplot(aes(x = carat, y = price))
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_boxplot(aes(group = cut_width(carat, 0.1)), orientation = 'x')
+
+# price and color
+ggplot(diamonds)+
+  geom_boxplot(aes(x = reorder(color, price, FUN = median), y = price))
+
+#clarity and price
+ggplot(diamonds) + 
+  geom_boxplot(aes(x = reorder(clarity, price, FUN = median), y = price))
+
+# 3
+ggplot(diamonds)+
+  geom_boxplot(aes(x = reorder(clarity, price, FUN = median), y = price)) +
+  coord_flip()
+
+ggplot(diamonds)+
+  geom_boxploth(aes(y = reorder(clarity, price, FUN = median), x = price))
+
+# 4
+ggplot(diamonds)+
+  geom_lv(aes(x = cut, y = price))
+
+# 5
+ggplot(diamonds) +
+  geom_freqpoly(aes(x = price, y = after_stat(density), color = cut), binwidth = 500)
+
+## geom_histogram
+ggplot(diamonds) +
+  geom_histogram(aes(x = price), binwidth = 10)+
+  coord_cartesian(xlim = c(320, 500))
+
+ggplot(diamonds) +
+  geom_histogram(aes(x = price)) +
+  facet_wrap(~cut,
+             ncol = 1,
+             scales = 'free_y')
+
+## geom_violin
+ggplot(diamonds) +
+  geom_violinh(aes(x = price, y = reorder(cut, price, FUN = median)))
+
+ggplot(diamonds) +
+  geom_violin(aes(x = cut, y = price)) +
+  coord_flip()
+
+
+# installing ggbeeswarm package
+install.packages("ggbeeswarm")
+
+library('beeswarm')
+library('ggbeeswarm')
+
+ggplot(mpg) +
+  geom_beeswarm(aes(x = reorder(class, hwy, FUN = mean),
+                    y = hwy),
+                method = 'swarm')
+
+# Two Categorical Values
+ggplot(diamonds) +
+  geom_count(aes(x = cut, y = color))
+
+# Using geom_tile
+diamonds %>%
+  count(color, cut) %>%
+  ggplot(aes(x = color,
+             y = cut)) +
+  geom_tile()
+
+ggplot(diamonds)+
+  geom_point(aes(x = carat, y = price),
+             alpha = 0.1)
+
+
+# Two Continuous variables
+install.packages('hexbin')
+library(hexbin)
+
+smaller <- diamonds %>%
+  filter(carat < 3)
+
+# using the _bin2d() function
+ggplot(smaller) +
+  geom_bin2d(aes(x = carat, y = price))
+
+# using the _hex() function
+ggplot(smaller) +
+  geom_hex(aes(x = carat, y = price))
+
+
+ggplot(smaller) + 
+  geom_boxplot(aes(x = carat, y = price,
+                   group = cut_width(carat, 0.1)))
+
+ggplot(smaller)+
+  geom_boxplot(aes(x = carat, y = price,
+                   group = cut_width(carat, 0.1)),
+               varwidth = TRUE)
+
+ggplot(smaller)+
+  geom_boxplot(aes(x = carat, y = price,
+                   group = cut_number(carat, 20)))
+
+library(modelr)
+mod <- lm(log(price) ~ log(carat), data = diamonds)
+
+diamonds2 <- diamonds %>%
+  add_residuals(mod) %>%
+  mutate(resid = exp(resid))
+
+ggplot(data = diamonds2) +
+  geom_point(aes(x = carat, y = resid))
+
+ggplot(diamonds, aes(carat, price))+
+  geom_hex()
+
+ggsave('diamonds.pdf')
+
+write_csv(diamonds, 'diamonds.csv')
+
+
+
+# Tibbles
+## Creating tibbles
+as_tibble(iris)
+
+tibble(
+  x = 1:5,
+  y = x ^ 2,
+  z = x ^2 + y
+)
+
+tb <- tibble(
+  `:)` = 'smile',
+  ` ` = 'space',
+  `2002` = 'Number'
+)
+tb
+
+tribble(
+  ~x,~y,~z,
+  #--/--/--/ This comment line makes it readable
+  'a', 2, 3.1,
+  'b', 4, 4.1
+)
+
+
+# Printing Tibbles
+tibble(
+  a = lubridate::now() + runif(1e3) * 86400,
+  b = lubridate::today() + runif(1e3) * 30,
+  c = 1:1e3,
+  d = runif(1e3),
+  e = sample(letters, 1e3, replace = TRUE)
+)
+
+
+print(diamonds, n = 30, width = Inf) #method one, Inf prints all the columns
+diamonds %>%
+  print(n = 30, width = Inf) # method two
+
+# adjusting the print option
+options(tibble.print_max = 1000, tibble.print_min = 50) # This prints 50 if the rows is more than 1000
+options(tibble.width = Inf) # this prints all the columns regardless of the screen width
+
+
+diamonds$price
+diamonds[['price']]
+diamonds[[7]]
+
+package?tibble
+
+# Exercise
+is_tibble(mtcars) # used to check if a data frame is a tibble
+
+df <- data.frame(abc =1, xyz = 'a')
+df$x
+df[, 'xyz']
+df[, c('abc', 'xyz')]
+
+# Importing files
+read_csv("C:/Users/aduol/Documents/r4ds/diamonds.csv")
+
+#inline
+read_csv(
+  "lamma, gamma, mamma
+  a,b,c
+  1,2,3
+  4,5,6"
+)
+
+
+# TWeaks
+read_csv('Skip line,
+         skip line 2,
+         y,x,x,xx
+         a,s,d
+         3,4,5
+         4,5,6
+         4,4,4',
+         skip = 3)
+read_csv('#this is a comment
+         #also a comment
+         q,w,e
+         1,2,3
+         5,4,6',
+         comment = '#')
+
+#Parsing
+## integer
+parse_integer(c('1','2', '3'))
+
+str(parse_integer(c('1','2', '3'))) # investigating the structure
+
+## date
+parse_date(c('1996-11-24', '1993-12-20', '2005-03-20', '1999-04-27'))
+
+str(parse_date(c('1996-11-24', '1993-12-20', '2005-03-20', '1999-04-27')))
+
+## logical
+parse_logical(c('TRUE', 'FALSE', 'NA'))
+
+str(parse_logical(c('TRUE', 'FALSE', 'NA')))
+
+parse_integer(c('1', '234', '.', '456'), na = '.')
+
+parse_integer(c('123', '456', 'abc',  '123.45'))
+
+#factor
+fruit <- c('apple', 'banana')
+parse_factor(c('apple', 'banana'), levels = fruit)
+
+# Character
+parse_character('Howdy')
+
+charToRaw('Howdy') # To see the hexadecimal values of the characters
+
+#date
+parse_datetime('1996-11-24T2330')
+
+parse_date('1996/11/24') # / or - can be used
+
+#time
+parse_time('04:36:52 am')
+parse_time('11:15 am')
+parse_time('22:12:50') # with seconds
+
+# using the hms package
+parse_date('24/11/96', '%d/%m/%y')
+
+parse_date('24 November 1996', '%d %B %Y', locale = locale('en'))
+
+#hms()
+hms(52, 23, 50)
+
+# To get system time
+as_hms(Sys.time())
