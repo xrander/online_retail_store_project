@@ -1,15 +1,17 @@
 ---
-title: "Online Retail Store Performance"
+title: "Gym Attendance Prediction"
 author: "Olamide Adu"
-date: "2023-03-25"
+date: "2023-08-07"
 output:
-   prettydoc::html_pretty:
-    theme: Architect
+   html_document:
     toc: true
-    toc_float: false
-    highlight: github
-    code_theme: zenburn
-    keep_md: true
+    toc_depth: 2
+    toc_float: true
+    dev: svg
+    theme: simplex
+    highlight: zenburn
+    code_folding: show
+    df_print: paged
 ---
 
 # Online Retail Store Analysis
@@ -36,7 +38,7 @@ The data used for this project was provided by TATA through theforage.com virtua
 
 -   Country: the country where purchase was made.
 
-```{r}
+```{r message=FALSE}
 # Importing libraries
 library(tidyverse)
 library(readxl)
@@ -45,26 +47,15 @@ library(gridExtra)
 library(plotly)
 ```
 
-Next, I imported the data which is in xlsx format. The file is fairly large and can be downloaded at '<https://github.com/xrander/online_retail_store_project/blob/master/Online%20Retail.xlsx>'. The file is already available on my local computer and further analysis are made based on this
+Next, I imported the data which is in xlsx format. The file is fairly large and can be downloaded at '<https://github.com/xrander/online_retail_store_project/blob/master/Online%20Retail.xlsx>'.
 
 ```{r}
-# Setting working directory
+#import data
+online_store <- read_csv("https://raw.githubusercontent.com/xrander/online_retail_store_project/master/online_store.csv")
 
-setwd("C:/Users/aduol/Documents/Personal/Online_retail_store/online_retail_store_project/")
-
-# to replicate this project, use your device directory here, in the format setwd('C:/users/myworkingdirectory') 
-
-#importing data
-online_store <- read_excel('Online Retail.xlsx')
-
-#saving the file in csv format to reduce processing time by R
-write.csv(online_store,
-    "C:/Users/aduol/Documents/Personal/Online_retail_store/online_retail_store_project/online_store.csv",
-    row.names = F)
-
-#loading data again
-online_store <- read.csv('online_store.csv')
+head(online_store, n = 15)
 ```
+
 
 Data types do change after converting 'xlsx' to 'csv', it is therefore necessary to investigate the data before attempting any questions. This can also provide some insight to the data which aids analysis
 
