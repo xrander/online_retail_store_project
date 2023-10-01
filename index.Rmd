@@ -57,7 +57,7 @@ The dashboards will provide insights on the business.
 <img src = "https://github.com/xrander/online_retail_store_project/blob/master/Sales.png?raw=true">
 Click the link below to go to the interactive page.
 
-[The DashBoard]("https://app.powerbi.com/view?r=eyJrIjoiZWVlZDUxYzgtNTcwMC00MDEyLWExMTUtM2E2YWIwZDEwMzRmIiwidCI6ImEzYjVmMDcxLTBlNDktNDdhMC1hNDBlLTliN2M5YzRkNjQ3ZSIsImMiOjh9" )
+<iframe title="Olamide_Online_Retail" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=e918e8d4-f6a1-4596-9b00-3cc04b8dde30&autoAuth=true&ctid=a3b5f071-0e49-47a0-a40e-9b7c9c4d647e" frameborder="0" allowFullScreen="true"></iframe>
 
 
 [Back to Portfolio](https://olamideadu.com)
