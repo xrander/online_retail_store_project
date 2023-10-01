@@ -46,15 +46,15 @@ The development of this dashboard took 3 weeks. A typical dashboard takes 2 week
 ## Result
 The dashboards will provide insights on the business.
 
-###Project Overview
+### Project Overview
 
 
-![](~/Documents/Data Science/Personal Project/online_retail_store_project/Dashboard.png)
+<img src = "https://github.com/xrander/online_retail_store_project/blob/master/Dashboard.png?raw=true">
 
 ### Sales Report
 
 
-![](~/Documents/Data Science/Personal Project/online_retail_store_project/Sales.png)
+<img src = "https://github.com/xrander/online_retail_store_project/blob/master/Sales.png?raw=true">
 Click the link below to go to the interactive page.
 
 [The DashBoard]("https://app.powerbi.com/view?r=eyJrIjoiZWVlZDUxYzgtNTcwMC00MDEyLWExMTUtM2E2YWIwZDEwMzRmIiwidCI6ImEzYjVmMDcxLTBlNDktNDdhMC1hNDBlLTliN2M5YzRkNjQ3ZSIsImMiOjh9" )
