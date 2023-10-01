@@ -43,8 +43,21 @@ The development of this dashboard took 3 weeks. A typical dashboard takes 2 week
 
 -   Country: the country where purchase was made.
 
-```{r results='asis'}
-cat('<iframe title="Olamide_Online_Retail" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZWVlZDUxYzgtNTcwMC00MDEyLWExMTUtM2E2YWIwZDEwMzRmIiwidCI6ImEzYjVmMDcxLTBlNDktNDdhMC1hNDBlLTliN2M5YzRkNjQ3ZSIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>')
-```
+## Result
+The dashboards will provide insights on the business.
+
+###Project Overview
+
+
+![](~/Documents/Data Science/Personal Project/online_retail_store_project/Dashboard.png)
+
+### Sales Report
+
+
+![](~/Documents/Data Science/Personal Project/online_retail_store_project/Sales.png)
+Click the link below to go to the interactive page.
+
+[The DashBoard]("https://app.powerbi.com/view?r=eyJrIjoiZWVlZDUxYzgtNTcwMC00MDEyLWExMTUtM2E2YWIwZDEwMzRmIiwidCI6ImEzYjVmMDcxLTBlNDktNDdhMC1hNDBlLTliN2M5YzRkNjQ3ZSIsImMiOjh9" )
+
 
 [Back to Portfolio](https://olamideadu.com)
