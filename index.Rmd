@@ -44,7 +44,7 @@ The development of this dashboard took 3 weeks. A typical dashboard takes 2 week
 -   Country: the country where purchase was made.
 
 ```{r results='asis'}
-cat('<iframe title="Olamide_Online_Retail" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=e918e8d4-f6a1-4596-9b00-3cc04b8dde30&autoAuth=true&ctid=a3b5f071-0e49-47a0-a40e-9b7c9c4d647e" frameborder="0" allowFullScreen="true"></iframe>')
+cat('<iframe title="Olamide_Online_Retail" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZWVlZDUxYzgtNTcwMC00MDEyLWExMTUtM2E2YWIwZDEwMzRmIiwidCI6ImEzYjVmMDcxLTBlNDktNDdhMC1hNDBlLTliN2M5YzRkNjQ3ZSIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>')
 ```
 
 [Back to Portfolio](https://olamideadu.com)
